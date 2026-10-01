@@ -130,3 +130,18 @@ footer a { color: var(--encre-douce); }
     header { padding-top: 36px; }
     h1 { font-size: 1.5rem; }
 }
+
+h3 {
+    margin: 28px 0 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--encre);
+}
+
+h3 + p { margin-top: 0; }
+
+.contact {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 4px 0 18px;
+}
