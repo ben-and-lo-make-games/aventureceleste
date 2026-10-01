@@ -1,57 +1,87 @@
 /* Avent Ure Céleste — site public.
+   Registre : l'atlas céleste gravé, que les crédits du jeu revendiquent déjà
+   pour justifier la Cinzel (capitales romaines, colonne Trajane). Papier,
+   encre de Prusse, vermillon de gravure. La nuit, la page bascule dans le ciel.
+
    Aucune ressource externe : ni police distante, ni script tiers, ni mesure de
    fréquentation. Une page qui affirme ne rien collecter ne doit pas faire de
-   requête vers un tiers. Le ciel étoilé est dessiné en CSS, pas en images. */
+   requête vers un tiers. Grain et étoiles sont dessinés en CSS. */
 
 :root {
-    --nuit:        #060910;
-    --nuit-carte:  #0b111f;
-    --trait:       #1a2335;
-    --encre:       #dde5f4;
-    --encre-douce: #8798b6;
-    --or:          #e8c069;
+    /* Le jour : la planche d'atlas. */
+    --fond:        #f2ece0;
+    --fond-carte:  #ebe2d1;
+    --trait:       #cbbfa6;
+    --encre:       #1a2740;
+    --encre-douce: #6d6351;
+    --accent:      #b2432c;
+    --grain:       rgba(26, 39, 64, .035);
+    --ciel:        none;
 
-    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-    --texte: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
-    --colonne: 44rem;
+    --colonne: 42rem;
+}
+
+/* La nuit : le ciel que le jeu montre. L'encre devient le blanc bleuté de
+   l'interface du jeu, le vermillon s'éclaircit pour tenir sur le sombre. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fond:        #070b14;
+        --fond-carte:  #0d1422;
+        --trait:       #1f2b42;
+        --encre:       #c8dcff;
+        --encre-douce: #7d8fb0;
+        --accent:      #e08263;
+        --grain:       rgba(200, 220, 255, .025);
+        --ciel:        block;
+    }
 }
 
 * { box-sizing: border-box; }
 
-html {
-    -webkit-text-size-adjust: 100%;
-    scroll-behavior: smooth;
-}
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 body {
     margin: 0;
     padding: 0 20px 80px;
-    background: var(--nuit);
+    background: var(--fond);
     color: var(--encre);
-    font-family: var(--texte);
-    font-size: 17px;
-    line-height: 1.72;
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.68;
     position: relative;
 }
 
-/* Un ciel discret : trois couches d'étoiles en dégradés radiaux, fixées au
-   fond. Pas une image, donc aucune requête et aucun poids. */
+/* Le grain du papier, puis — la nuit seulement — les étoiles. Deux couches
+   superposées, aucune image. */
 body::before {
     content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-image:
+        repeating-linear-gradient(0deg,   var(--grain) 0 1px, transparent 1px 3px),
+        repeating-linear-gradient(90deg,  var(--grain) 0 1px, transparent 1px 4px);
+}
+
+body::after {
+    content: "";
+    display: var(--ciel);
     position: fixed;
     inset: 0;
     z-index: -1;
     pointer-events: none;
     background-image:
-        radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.55), transparent),
-        radial-gradient(1px 1px at 76% 9%,  rgba(255,255,255,.40), transparent),
-        radial-gradient(1px 1px at 38% 62%, rgba(255,255,255,.35), transparent),
-        radial-gradient(1px 1px at 88% 48%, rgba(255,255,255,.45), transparent),
-        radial-gradient(1px 1px at 24% 88%, rgba(255,255,255,.30), transparent),
-        radial-gradient(1px 1px at 61% 77%, rgba(255,255,255,.38), transparent),
-        radial-gradient(2px 2px at 50% 32%, rgba(232,192,105,.28), transparent),
-        radial-gradient(1px 1px at 6% 54%,  rgba(255,255,255,.28), transparent);
+        radial-gradient(1px 1px at 12% 18%, rgba(200,220,255,.55), transparent),
+        radial-gradient(1px 1px at 76% 9%,  rgba(200,220,255,.40), transparent),
+        radial-gradient(1px 1px at 38% 62%, rgba(200,220,255,.30), transparent),
+        radial-gradient(1px 1px at 88% 48%, rgba(200,220,255,.45), transparent),
+        radial-gradient(1px 1px at 24% 88%, rgba(200,220,255,.28), transparent),
+        radial-gradient(1px 1px at 61% 77%, rgba(200,220,255,.36), transparent),
+        radial-gradient(2px 2px at 50% 32%, rgba(224,130,99,.26), transparent);
 }
 
 .page { max-width: var(--colonne); margin: 0 auto; }
@@ -64,80 +94,79 @@ body::before {
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
-    padding: 22px 0 18px;
-    border-bottom: 1px solid var(--trait);
+    padding: 22px 0 16px;
+    border-bottom: 2px solid var(--encre);
     font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
-.barre .marque { color: var(--encre); text-decoration: none; }
-.barre .marque:hover { color: var(--or); }
-
-.barre nav { display: flex; gap: 18px; }
+.barre .marque { color: var(--encre); text-decoration: none; font-weight: 600; }
+.barre .marque:hover { color: var(--accent); }
+.barre nav { display: flex; gap: 20px; }
 .barre nav a { color: var(--encre-douce); text-decoration: none; }
 .barre nav a:hover,
-.barre nav a[aria-current] { color: var(--or); }
+.barre nav a[aria-current] { color: var(--accent); }
 
 /* ------------------------------------------------------------------ titre */
 
-header.titre { padding: 64px 0 36px; }
+header.titre { padding: 60px 0 32px; }
 
+/* Capitales espacées : l'inscription gravée, sans charger de police. */
 h1 {
     margin: 0;
-    font-size: clamp(1.7rem, 6vw, 2.6rem);
+    font-size: clamp(1.5rem, 5.2vw, 2.3rem);
     font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+    line-height: 1.22;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
 .sous-titre {
-    margin: 14px 0 0;
+    margin: 16px 0 0;
     color: var(--encre-douce);
-    font-size: 1.05rem;
+    font-size: 1.02rem;
+    font-style: italic;
 }
 
-/* L'estampille de mise à jour, en haut à droite comme sur un document. */
 .estampille {
     float: right;
-    margin-top: 6px;
+    margin-top: 4px;
     font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
     color: var(--encre-douce);
     text-transform: uppercase;
 }
 
-/* Le paragraphe d'attaque : plus grand, plus clair, c'est lui qui porte le
-   propos. Le reste du texte le détaille. */
 .attaque {
-    font-size: 1.22rem;
-    line-height: 1.6;
-    color: var(--encre);
-    margin: 0 0 28px;
+    font-size: 1.24rem;
+    line-height: 1.58;
+    margin: 0 0 30px;
 }
 
-.attaque strong { color: var(--or); font-weight: 600; }
+.attaque strong { color: var(--accent); font-weight: 600; }
 
 /* --------------------------------------------------------------- sections */
 
 h2 {
-    margin: 52px 0 18px;
-    padding-bottom: 10px;
+    margin: 54px 0 20px;
+    padding-bottom: 8px;
     border-bottom: 1px solid var(--trait);
     font-family: var(--mono);
-    font-size: 0.8rem;
+    font-size: 0.76rem;
     font-weight: 500;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--or);
+    color: var(--accent);
 }
 
 h3 {
     margin: 32px 0 4px;
-    font-size: 1.02rem;
+    font-size: 1.05rem;
     font-weight: 600;
+    font-style: italic;
 }
 
 h3 + p { margin-top: 0; }
@@ -146,23 +175,22 @@ p { margin: 0 0 18px; }
 
 ul { padding-left: 1.1rem; margin: 0 0 18px; }
 li { margin-bottom: 10px; }
-li::marker { color: var(--or); }
+li::marker { color: var(--accent); }
 
 a {
-    color: var(--or);
+    color: var(--accent);
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
 }
-a:hover { color: #fff; }
+a:hover { color: var(--encre); }
 
 /* ----------------------------------------------------------------- cartes */
 
 .carte {
-    background: var(--nuit-carte);
+    background: var(--fond-carte);
     border: 1px solid var(--trait);
-    border-radius: 12px;
     padding: 4px 26px 24px;
-    margin: 32px 0;
+    margin: 34px 0;
 }
 
 .carte h2 { margin-top: 26px; }
@@ -177,18 +205,19 @@ a:hover { color: #fff; }
 .sommaire li:last-child { padding-bottom: 2px; border-bottom: none; }
 .sommaire li::marker { content: none; }
 
-.sommaire a { font-weight: 600; font-size: 1.04rem; text-decoration: none; }
+.sommaire a { font-weight: 600; font-size: 1.06rem; text-decoration: none; }
 .sommaire a:hover { text-decoration: underline; }
 
 .sommaire span {
     display: block;
     color: var(--encre-douce);
     font-size: 0.95rem;
+    font-style: italic;
 }
 
 .contact {
     font-family: var(--mono);
-    font-size: 1.05rem;
+    font-size: 1rem;
     margin: 6px 0 20px;
     word-break: break-all;
 }
@@ -198,21 +227,24 @@ a:hover { color: #fff; }
 .constellation {
     display: block;
     width: 100%;
-    max-width: 320px;
+    max-width: 340px;
     height: auto;
-    margin: 44px auto 8px;
-    opacity: 0.9;
+    margin: 48px auto 10px;
 }
 
-.constellation line { stroke: var(--or); stroke-width: 0.8; opacity: 0.5; }
+.constellation line { stroke: var(--encre); stroke-width: 0.6; opacity: .45; }
 .constellation circle { fill: var(--encre); }
-.constellation .vive { fill: #fff; }
+
+/* Les plus brillantes portent leur anneau, comme sur une planche gravée où le
+   diamètre et le cerne disent la magnitude. */
+.constellation .vive { fill: var(--accent); stroke: var(--accent); stroke-width: .7; fill-opacity: 1; }
+.constellation .halo { fill: none; stroke: var(--accent); stroke-width: .6; opacity: .5; }
 
 .legende {
     text-align: center;
     font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--encre-douce);
     margin: 0 0 10px;
@@ -222,22 +254,22 @@ a:hover { color: #fff; }
 
 footer {
     margin-top: 72px;
-    padding-top: 22px;
-    border-top: 1px solid var(--trait);
+    padding-top: 20px;
+    border-top: 2px solid var(--encre);
     font-family: var(--mono);
-    font-size: 0.74rem;
-    letter-spacing: 0.08em;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--encre-douce);
 }
 
 footer a { color: var(--encre-douce); text-decoration: none; }
-footer a:hover { color: var(--or); }
+footer a:hover { color: var(--accent); }
 
 @media (max-width: 520px) {
-    body { font-size: 16px; }
+    body { font-size: 17px; }
     header.titre { padding-top: 40px; }
-    .attaque { font-size: 1.1rem; }
+    .attaque { font-size: 1.12rem; }
     .carte { padding-left: 18px; padding-right: 18px; }
     .estampille { float: none; display: block; margin: 0 0 18px; }
 }
