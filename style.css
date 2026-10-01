@@ -222,33 +222,45 @@ a:hover { color: var(--encre); }
     word-break: break-all;
 }
 
-/* ------------------------------------------------------------ constellation */
+/* ----------------------------------------------------------------- planche */
 
-.constellation {
+/* La planche est tracee par un script depuis assets/stars.bin et
+   assets/figures.bin du projet star : directions unitaires reelles, projection
+   stereographique, rayon des etoiles donne par leur magnitude. */
+
+.planche {
     display: block;
     width: 100%;
-    max-width: 340px;
+    max-width: 360px;
     height: auto;
-    margin: 48px auto 10px;
+    margin: 52px auto 12px;
 }
 
-.constellation line { stroke: var(--encre); stroke-width: 0.6; opacity: .45; }
-.constellation circle { fill: var(--encre); }
-
-/* Les plus brillantes portent leur anneau, comme sur une planche gravée où le
-   diamètre et le cerne disent la magnitude. */
-.constellation .vive { fill: var(--accent); stroke: var(--accent); stroke-width: .7; fill-opacity: 1; }
-.constellation .halo { fill: none; stroke: var(--accent); stroke-width: .6; opacity: .5; }
+.planche .figure line { stroke: var(--encre); stroke-width: .6; opacity: .40; }
+.planche .champ circle { fill: var(--encre); opacity: .45; }
+.planche .sommets circle { fill: var(--encre); }
+.planche .sommets .halo { fill: none; stroke: var(--accent); stroke-width: .7; opacity: .65; }
 
 .legende {
     text-align: center;
     font-family: var(--mono);
     font-size: 0.68rem;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--encre-douce);
-    margin: 0 0 10px;
+    margin: 0 0 8px;
 }
+
+.credit {
+    text-align: center;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--encre-douce);
+    max-width: 30rem;
+    margin: 0 auto 10px;
+}
+
+.credit abbr { text-decoration: none; }
 
 /* ------------------------------------------------------------------- pied */
 
