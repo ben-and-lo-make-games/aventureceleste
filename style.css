@@ -251,14 +251,35 @@ a:hover { color: var(--encre); }
     margin: 0 0 8px;
 }
 
-.credit {
-    text-align: center;
-    font-size: 0.78rem;
-    line-height: 1.5;
-    color: var(--encre-douce);
-    max-width: 30rem;
-    margin: 0 auto 10px;
+.planche-figure { margin: 52px 0 14px; }
+.planche-figure .planche { margin: 0 auto 18px; }
+.planche-figure figcaption { max-width: 31rem; margin: 0 auto; text-align: center; }
+
+.planche .noms text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 10px;
+    fill: var(--encre-douce);
 }
+
+.notice {
+    font-style: italic;
+    font-size: 1.02rem;
+    line-height: 1.6;
+    margin: 0 0 16px;
+}
+
+.credit {
+    font-size: 0.8rem;
+    line-height: 1.55;
+    color: var(--encre-douce);
+    margin: 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--trait);
+}
+
+.credit a { color: var(--encre-douce); }
+.credit a:hover { color: var(--accent); }
 
 .credit abbr { text-decoration: none; }
 

@@ -18,6 +18,18 @@ import struct
 import sys
 
 
+# Etiquettes posees sur la planche, par constellation. Coordonnees J2000 lues
+# dans le catalogue HYG v4.4 (colonnes ra en heures, dec en degres). Chaque
+# entree : texte, ra, dec, decalage x, decalage y, alignement du texte.
+ETIQUETTES = {
+    "Ori": [
+        ("B\u00e9telgeuse", 5.9195, +7.4071, -11.5, 3.5, "end"),
+        ("Rigel",           5.2423, -8.2016,  11.5, 3.5, "start"),
+        ("les Trois Rois",  5.6036, -1.2019, -14.0, 14.0, "end"),
+    ],
+}
+
+
 def lire_etoiles(chemin):
     b = open(chemin, "rb").read()
     magic, _version, n, taille = struct.unpack_from("<4sIII", b, 0)
@@ -115,7 +127,18 @@ def main():
             ecrire(f'    <circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{r:.2f}"/>\n')
             if mag < 1.0:
                 ecrire(f'    <circle class="halo" cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{r + 3.4:.2f}"/>\n')
-    ecrire('  </g>\n</svg>\n')
+    ecrire('  </g>\n')
+    etiquettes = ETIQUETTES.get(code, [])
+    if etiquettes:
+        ecrire('  <g class="noms">\n')
+        for texte, ra_h, dec_d, dx, dy, ancre_txt in etiquettes:
+            ra, dec = math.radians(ra_h * 15.0), math.radians(dec_d)
+            s = (math.cos(dec) * math.cos(ra), math.cos(dec) * math.sin(ra), math.sin(dec))
+            p = projette(s)
+            if p:
+                ecrire(f'    <text x="{p[0] + dx:.1f}" y="{p[1] + dy:.1f}" text-anchor="{ancre_txt}">{texte}</text>\n')
+        ecrire('  </g>\n')
+    ecrire('</svg>\n')
 
 
 if __name__ == "__main__":
