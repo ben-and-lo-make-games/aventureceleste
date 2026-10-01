@@ -32,3 +32,11 @@ données du jeu, et non dessinée :
 
 La sortie remplace le `<svg class="planche">` de `index.html`. Les données sont
 sous licence CC BY-SA, et la légende de la planche porte leur attribution.
+
+## Apres chaque modification du style
+
+    python3 outils/version.py
+
+GitHub Pages laisse les navigateurs garder `style.css` en cache. Le script
+ajoute a son adresse l'empreinte de son contenu, pour que tout changement de
+style soit vu immediatement, y compris par un visiteur deja venu.
