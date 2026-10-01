@@ -1,0 +1,132 @@
+/* Avent Ure Céleste — site public.
+   Aucune ressource externe : ni police distante, ni script tiers. Une page qui
+   affirme ne rien collecter ne doit pas faire de requête vers un tiers. */
+
+:root {
+    --fond: #05070d;
+    --fond-carte: #0b1020;
+    --trait: #1c2744;
+    --encre: #c8dcff;
+    --encre-douce: #8699bb;
+    --accent: #ffd77a;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    margin: 0;
+    padding: 0 16px 64px;
+    background: var(--fond);
+    color: var(--encre);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+}
+
+.page {
+    max-width: 44rem;
+    margin: 0 auto;
+}
+
+header {
+    padding: 56px 0 32px;
+    border-bottom: 1px solid var(--trait);
+    margin-bottom: 40px;
+}
+
+h1 {
+    margin: 0 0 8px;
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.sous-titre {
+    margin: 0;
+    color: var(--encre-douce);
+    font-size: 1rem;
+}
+
+h2 {
+    margin: 40px 0 12px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+p, li { color: var(--encre); }
+
+ul { padding-left: 1.2rem; }
+
+li { margin-bottom: 8px; }
+
+a {
+    color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+a:hover { color: #fff; }
+
+.carte {
+    background: var(--fond-carte);
+    border: 1px solid var(--trait);
+    border-radius: 10px;
+    padding: 4px 24px 20px;
+    margin: 28px 0;
+}
+
+.sommaire {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sommaire li {
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--trait);
+}
+
+.sommaire li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.sommaire a {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.sommaire span {
+    display: block;
+    color: var(--encre-douce);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.date {
+    color: var(--encre-douce);
+    font-size: 0.9rem;
+}
+
+footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--trait);
+    color: var(--encre-douce);
+    font-size: 0.9rem;
+}
+
+footer a { color: var(--encre-douce); }
+
+@media (max-width: 480px) {
+    header { padding-top: 36px; }
+    h1 { font-size: 1.5rem; }
+}
