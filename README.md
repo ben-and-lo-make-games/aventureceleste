@@ -1,6 +1,6 @@
 # aventureceleste
 
-Site public du jeu **Avent Ure Céleste**, servi par GitHub Pages sur
+Site public du jeu **Avent’ure céleste**, servi par GitHub Pages sur
 <https://bhrousseau.github.io/aventureceleste/>.
 
 Il n'existe que pour porter les deux adresses que l'App Store et Google Play
@@ -19,3 +19,16 @@ pages statiques.
 Aucune ressource externe : ni police distante, ni script tiers, ni mesure de
 fréquentation. Une page qui affirme ne rien collecter ne doit pas faire de
 requête vers un tiers.
+
+Un seul thème, clair. Le registre est celui de l’atlas céleste gravé : papier
+vergé, encre de Prusse, rubriques au vermillon.
+
+## La planche
+
+La planche d’Orion de l’accueil est tracée par `outils/planche.py` depuis les
+données du jeu, et non dessinée :
+
+    python3 outils/planche.py ../avent-ure-celeste/rive/star Ori
+
+La sortie remplace le `<svg class="planche">` de `index.html`. Les données sont
+sous licence CC BY-SA, et la légende de la planche porte leur attribution.

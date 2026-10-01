@@ -51,7 +51,9 @@ def lire_figures(chemin):
     polys = [struct.unpack_from("<HH", b, o + i * 4) for i in range(npoly)]
     o += npoly * 4
     idx = [struct.unpack_from("<H", b, o + i * 2)[0] for i in range(nidx)]
-    return figs, cons, polys, idx
+    o += nidx * 2
+    noms = b[o:o + _ntn]
+    return figs, cons, polys, idx, noms
 
 
 def main():
@@ -59,12 +61,13 @@ def main():
     code = (sys.argv[2] if len(sys.argv) > 2 else "Ori")
 
     etoiles = lire_etoiles(f"{racine}/assets/stars.bin")
-    figs, cons, polys, idx = lire_figures(f"{racine}/assets/figures.bin")
+    figs, cons, polys, idx, noms = lire_figures(f"{racine}/assets/figures.bin")
 
     cible = next((c for c in cons if c[0].decode().strip() == code), None)
     if cible is None:
         raise SystemExit(f"constellation inconnue : {code}")
-    _, fx, fy, fz, rayon, _, prem_fig, nb_fig, _, _ = cible
+    _, fx, fy, fz, rayon, off_nom, prem_fig, nb_fig, _, _ = cible
+    nom_latin = noms[off_nom:noms.index(b"\0", off_nom)].decode("utf-8")
 
     forward = (fx, fy, fz)
     nord = (0.0, 0.0, 1.0)
@@ -112,7 +115,7 @@ def main():
 
     ecrire(f'<svg class="planche" viewBox="0 0 {largeur:.0f} {hauteur:.0f}" '
            f'xmlns="http://www.w3.org/2000/svg" role="img" '
-           f'aria-label="Planche celeste : {code}">\n')
+           f'aria-label="Planche céleste : {nom_latin}">\n')
     ecrire('  <g class="figure">\n')
     for a, c in lignes:
         ecrire(f'    <line x1="{a[0]:.1f}" y1="{a[1]:.1f}" x2="{c[0]:.1f}" y2="{c[1]:.1f}"/>\n')

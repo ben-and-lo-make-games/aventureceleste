@@ -3,36 +3,41 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Avent Ure Céleste</title>
-<meta name="description" content="Calendrier de l'avent jouable : vingt-quatre portes, vingt-quatre énigmes, une constellation révélée chaque soir.">
+<meta name="color-scheme" content="light">
+<title>Avent’ure céleste — un calendrier de l’avent à ouvrir en famille</title>
+<meta name="description" content="Chaque soir de décembre, une porte, une énigme, et une constellation du vrai ciel. Un calendrier de l’avent à ouvrir en famille, sur iPhone et Android.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="page">
 
-<div class="barre">
-    <a class="marque" href="index.html">Avent Ure Céleste</a>
-    <nav>
+<header class="bandeau">
+    <a class="marque" href="index.html">Avent’ure céleste</a>
+    <nav aria-label="Pages du site">
         <a href="confidentialite.html">Confidentialité</a>
         <a href="assistance.html">Assistance</a>
     </nav>
-</div>
-
-<header class="titre">
-    <h1>Vingt-quatre portes,<br>vingt-quatre énigmes.</h1>
-    <p class="sous-titre">Une constellation révélée chaque soir de décembre.</p>
 </header>
 
-<p class="attaque">Un calendrier de l'avent qu'on ouvre en famille, une case par
-soir. Derrière chaque porte, une énigme courte. La résoudre dévoile une
-constellation et déverrouille la porte du lendemain.</p>
+<main>
 
-<p>Le reste de l'année, le jeu propose un défi quotidien : un mini-jeu par jour,
-le même pour tout le monde. Il se joue seul ou à plusieurs, <strong>sans compte,
-sans connexion et sans publicité</strong>.</p>
+<div class="cartouche">
+    <p class="surtitre">iPhone et Android · décembre 2026</p>
+    <h1>Avent’ure céleste</h1>
+    <p class="sous-titre">Un calendrier de l’avent à ouvrir en famille, une porte chaque soir de décembre.</p>
+</div>
+<span class="fleuron" aria-hidden="true">⁂</span>
+
+<p class="attaque lettrine">Chaque soir de décembre, une porte s’ouvre sur une
+énigme courte, à résoudre seul ou en famille. Résolue, elle révèle une
+constellation et déverrouille la porte du lendemain. Ces constellations sont
+celles du vrai ciel, tracées d’après leurs véritables étoiles. Et quand la
+vingt-quatrième porte est ouverte, il en reste une, que vous ne trouverez dans
+aucun atlas.</p>
 
 <figure class="planche-figure">
-<svg class="planche" viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Planche celeste : Ori">
+<div class="cadre">
+<svg class="planche" viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Planche céleste : Orion">
   <g class="figure">
     <line x1="153.8" y1="199.1" x2="160.5" y2="194.8"/>
     <line x1="160.5" y1="194.8" x2="166.6" y2="189.6"/>
@@ -260,38 +265,63 @@ sans connexion et sans publicité</strong>.</p>
     <text x="146.5" y="208.8" text-anchor="end">les Trois Rois</text>
   </g>
 </svg>
+</div>
 <figcaption>
 <p class="legende">Orion, le chasseur</p>
-<p class="notice">Il se lève à l'est les soirs de décembre. À son épaule,
-Bételgeuse, une supergéante rouge ; à son pied, Rigel, d'un blanc bleuté.
+<p class="notice">Il se lève à l’est les soirs de décembre. À son épaule,
+Bételgeuse, une supergéante rouge ; à son pied, Rigel, d’un blanc bleuté.
 Entre les deux, trois étoiles alignées forment son baudrier, que la tradition
 nomme les Trois Rois, en souvenir des mages.</p>
-<p class="credit">Planche dressée d'après le tracé de H.&nbsp;A.&nbsp;Rey,
+<p class="credit">Planche dressée d’après le tracé de H.&nbsp;A.&nbsp;Rey,
 le dessinateur de <i>Georges le petit curieux</i>, qui redessina en 1952 les
-constellations pour qu'on y voie enfin ce que leurs noms promettent. Nous le
+constellations pour qu’on y voie enfin ce que leurs noms promettent. Nous le
 tenons de <a href="https://github.com/Stellarium/stellarium-skycultures">Stellarium</a>,
 et les positions des étoiles du <a href="https://codeberg.org/astronexus/hyg">catalogue HYG</a>
-de David Nash, l'un et l'autre sous licence
+de David Nash, l’un et l’autre sous licence
 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr">CC&nbsp;BY-SA</a>.</p>
 </figcaption>
 </figure>
 
-<div class="carte">
-    <h2>Informations</h2>
-    <ul class="sommaire">
-        <li>
-            <a href="confidentialite.html">Politique de confidentialité</a>
-            <span>Ce que le jeu enregistre, et ce qu'il ne collecte pas.</span>
-        </li>
-        <li>
-            <a href="assistance.html">Assistance</a>
-            <span>Questions fréquentes, et comment nous écrire.</span>
-        </li>
-    </ul>
-</div>
+<h2>Huit jeux</h2>
 
-<footer>
-    <p>Avent Ure Céleste &middot; Benoît Rousseau</p>
+<p>Huit jeux se relaient au fil des portes : des jeux de lettres, de déduction
+et d’observation, des questions de culture générale, des casse-tête d’images.
+Chacun garde une aide en réserve sous une étoile, et si une énigme résiste
+vraiment, une porte de secours finit par s’ouvrir.</p>
+
+<h2>Toute l’année</h2>
+
+<p>Hors de décembre, le jeu propose un défi quotidien : un seul jeu par jour,
+le même pour tout le monde, et une seule partie pour le relever. De quoi garder
+la main jusqu’à l’hiver suivant.</p>
+
+<ul class="promesse" aria-label="Engagements">
+    <li>Gratuit</li>
+    <li>Sans compte</li>
+    <li>Sans connexion</li>
+    <li>Sans publicité</li>
+</ul>
+
+<h2>À consulter</h2>
+
+<ul class="sommaire">
+    <li>
+        <a href="confidentialite.html">Confidentialité</a>
+        <span>Ce que le jeu garde sur votre téléphone, et ce qu’il ne collecte pas.</span>
+    </li>
+    <li>
+        <a href="assistance.html">Assistance</a>
+        <span>Les questions fréquentes, et comment nous écrire.</span>
+    </li>
+</ul>
+
+</main>
+
+<footer class="colophon">
+    <span class="fleuron" aria-hidden="true">⁂</span>
+    <p>Avent’ure céleste est conçu et réalisé à deux, en famille, sur notre temps libre.</p>
+    <p>Publié par Benoît Rousseau.</p>
+    <p class="mentions">Ce site ne dépose aucun témoin et ne mesure pas sa fréquentation</p>
 </footer>
 
 </div>
