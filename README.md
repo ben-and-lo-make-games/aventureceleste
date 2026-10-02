@@ -1,7 +1,7 @@
 # aventureceleste
 
 Site public du jeu **Avent’ure céleste**, servi par GitHub Pages sur
-<https://bhrousseau.github.io/aventureceleste/>.
+<https://ben-and-lo-make-games.github.io/aventureceleste/>.
 
 Il n'existe que pour porter les deux adresses que l'App Store et Google Play
 exigent de toute application :
